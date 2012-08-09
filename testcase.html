@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <title>Multitouch Test</title>
+   <script type="text/javascript" src="uniTouch.js"></script>
+   <style>
+    -webkit-transition-duration:0.2s;
+    -webkit-transition-timing-function:linear;
+   </style>
+  </head>
+  <body>
+   <object id="tuio" type="application/x-tuio" style="width:0;height:0;">Plugin FAILED to load</object>
+   <form>
+    <input type="button" value="click me !" style="font-size: 5em;" id="theButton" onclick="log('button click');">
+   </form>
+   <pre id="log" style="background:#33393A;color:#fff;width:500px;"></pre>
+  <script>
+    function log(text) { 
+        if (text == 'reset') {
+            document.getElementById('log').innerHTML = 'reseted';
+            return true;   
+        }
+	    document.getElementById('log').innerHTML = text + "\n" + document.getElementById('log').innerHTML;
+    }
+    
+    /**************************************************************************/
+    
+    document.addEventListener("pinchzoomin", function(evt) {
+        log ('ZoomIn raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("pinchzoomout", function(evt) {
+        log ('ZoomOut raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("swipeup", function(evt) {
+        log ('SwipeUp raised ('+evt.speed+', '+evt.distance+')');
+    });
+    document.addEventListener("swipedown", function(evt) {
+        log ('SwipeDown raised ('+evt.speed+', '+evt.distance+')');
+    });
+    document.addEventListener("swipeleft", function(evt) {
+        log ('SwipeLeft raised ('+evt.speed+', '+evt.distance+')');
+    });
+    document.addEventListener("swiperight", function(evt) {
+        log ('SwipeRight raised ('+evt.speed+', '+evt.distance+')');
+    });
+    document.addEventListener("tap", function(evt) {
+        log ('Tap raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("doubletap", function(evt) {
+        log ('DoubleTap raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("press", function(evt) {
+        log ('Press raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("hold", function(evt) {
+        log ('Hold raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("release", function(evt) {
+        log ('Release raised ('+evt.centroid.x+', '+evt.centroid.y+')');
+    });
+    document.addEventListener("rotateleft", function(evt) {
+        log ('RotateLeft raised ('+evt.angle+')');
+    });
+    document.addEventListener("rotateright", function(evt) {
+        log ('RotateRight raised ('+evt.angle+')');
+    });
+    document.addEventListener("rotate", function(evt) {
+        log ('Rotate raised ('+evt.angle+')');
+        document.getElementById('theButton').style.webkitTransform = 'rotate('+evt.angle+'deg)';
+    });
+    
+    
+  </script>
+  </body>
+</html>  
+
